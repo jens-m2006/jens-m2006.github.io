@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jens Maerevoet – 3D &amp; XR</title>
+<meta name="description" content="Portfolio van Jens Maerevoet, student Multimedia &amp; Creative Technologies (3D &amp; XR) aan KdG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#12111c; --panel:#1b1a2a; --line:#34365a; --text:#ecebf4; --muted:#a3a2bb;
+  --amber:#ffb23e; --cyan:#3fd8ff;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --body:'DM Sans',system-ui,sans-serif;
+  --pad:clamp(1.25rem,5vw,4rem);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:68rem;margin:0 auto;padding:0 var(--pad)}
+h1,h2,h3{font-family:var(--display);line-height:1.05;letter-spacing:-.02em}
+
+/* nav */
+header{position:sticky;top:0;z-index:10;background:rgba(18,17,28,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;justify-content:space-between;align-items:center;height:3.5rem}
+.logo{font:800 1.1rem var(--display);text-decoration:none}
+nav{display:flex;gap:1.5rem;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--text)}
+
+/* hero: a 3D viewport */
+.hero{position:relative;overflow:hidden;padding:clamp(4rem,12vw,9rem) 0 clamp(4rem,10vw,7rem)}
+.grid-floor{position:absolute;left:-50%;right:-50%;bottom:0;height:60%;
+  background:
+    linear-gradient(var(--line) 1px,transparent 1px) 0 0/60px 60px,
+    linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/60px 60px;
+  transform:perspective(500px) rotateX(62deg);transform-origin:bottom;opacity:.55;
+  mask-image:linear-gradient(to top,#000 20%,transparent 95%);-webkit-mask-image:linear-gradient(to top,#000 20%,transparent 95%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;align-items:center}
+.hero h1{font-size:clamp(3rem,9vw,6.5rem);font-weight:800}
+.hero p.lead{margin-top:1.5rem;max-width:34rem;color:var(--muted);font-size:1.2rem}
+.btns{margin-top:2rem;display:flex;gap:.75rem;flex-wrap:wrap}
+.btn{display:inline-block;padding:.75rem 1.25rem;border-radius:.4rem;text-decoration:none;font-weight:500;border:1px solid var(--line)}
+.btn.main{background:var(--amber);border-color:var(--amber);color:#1a1200}
+.btn:hover{border-color:var(--cyan)}
+.btn.main:hover{background:#ffc460}
+
+.stage{height:16rem;display:grid;place-items:center;perspective:700px}
+.cube{width:7.5rem;height:7.5rem;position:relative;transform-style:preserve-3d;animation:spin 18s linear infinite}
+.cube i{position:absolute;inset:0;border:2px solid var(--cyan);background:rgba(63,216,255,.06)}
+.cube i:nth-child(1){transform:translateZ(3.75rem)}
+.cube i:nth-child(2){transform:rotateY(180deg) translateZ(3.75rem)}
+.cube i:nth-child(3){transform:rotateY(90deg) translateZ(3.75rem);border-color:var(--amber);background:rgba(255,178,62,.08)}
+.cube i:nth-child(4){transform:rotateY(-90deg) translateZ(3.75rem);border-color:var(--amber);background:rgba(255,178,62,.08)}
+.cube i:nth-child(5){transform:rotateX(90deg) translateZ(3.75rem)}
+.cube i:nth-child(6){transform:rotateX(-90deg) translateZ(3.75rem)}
+@keyframes spin{from{transform:rotateX(-22deg) rotateY(0)}to{transform:rotateX(-22deg) rotateY(360deg)}}
+
+/* sections */
+section{padding:clamp(3.5rem,8vw,6rem) 0}
+section>.wrap>h2{font-size:clamp(2rem,5vw,3.25rem);margin-bottom:2rem}
+
+/* projects */
+.ph{display:grid;place-items:center;text-align:center;padding:1rem;color:var(--muted);font-size:.95rem;
+  border:2px dashed var(--line);border-radius:.5rem;
+  background:repeating-linear-gradient(45deg,transparent 0 14px,rgba(255,255,255,.025) 14px 28px)}
+.ph strong{display:block;color:var(--text);font-weight:500}
+.project{border-top:1px solid var(--line);padding:2rem 0}
+.project.feature{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem;align-items:start}
+.project.feature .ph{aspect-ratio:9/12}
+.project-thumb{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:.5rem;margin-bottom:1.25rem}
+.project h3{font-size:clamp(1.6rem,3.5vw,2.4rem);margin-bottom:.75rem}
+.project p{color:var(--muted);max-width:36rem}
+dl{margin-top:1.25rem;display:grid;grid-template-columns:6.5rem 1fr;gap:.4rem 1rem;font-size:.97rem}
+dt{color:var(--amber)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
+.pair .project{border-top:1px solid var(--line);display:flex;flex-direction:column}
+.pair .project-video-title{margin-top:auto;padding-top:1.25rem}
+.pair .ph{aspect-ratio:16/9;margin-bottom:1.25rem}
+.strip{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:1rem}
+.strip .ph{aspect-ratio:1;font-size:.8rem;padding:.4rem}
+.project-gallery>img{display:block;width:100%;aspect-ratio:9/12;object-fit:cover;border-radius:.5rem}
+.strip img{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:.5rem}
+.project-video{display:block;width:100%;aspect-ratio:16/9;background:#000;border-radius:.5rem;margin-top:1.25rem}
+.project-video-title{margin-top:1.25rem;font:500 1.1rem/1.3 var(--display);color:var(--text)}
+.project-video-title+.project-video{margin-top:.5rem}
+.soon{display:flex;gap:1rem;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:1.5rem;border:2px dashed var(--line);border-radius:.5rem;margin-top:1rem}
+.soon p{color:var(--muted)}
+
+/* media */
+.media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.media-card{overflow:hidden;border:1px solid var(--line);border-radius:.5rem;background:var(--panel)}
+.media-card img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.media-card img[data-enlarge]{cursor:zoom-in}
+.image-viewer{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:2rem;background:rgba(0,0,0,.88)}
+.image-viewer[hidden]{display:none}
+.image-viewer img{display:block;max-width:min(100%,90rem);max-height:calc(100vh - 4rem);width:auto;height:auto;object-fit:contain}
+.image-viewer-close{position:absolute;top:1rem;right:1rem;border:1px solid var(--line);border-radius:.4rem;padding:.55rem .9rem;background:var(--panel);color:var(--text);font:inherit;cursor:pointer}
+.media-card figcaption{padding:1rem;color:var(--muted);font-size:.95rem}
+.media-card figcaption strong{display:block;color:var(--text);font-weight:500}
+.past-work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;max-width:38rem}
+.past-work-intro{color:var(--muted);max-width:48rem;margin:-.75rem 0 1.5rem}
+.past-work-grid .media-card img{aspect-ratio:4/3}
+.development-feature{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:start}
+.development-feature img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:.5rem}
+.development-feature figcaption{padding:.75rem 0;color:var(--muted);font-size:.95rem}
+.development-copy p{color:var(--muted)}
+.media-videos{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem}
+.media-videos video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+
+/* experiments */
+.experiment-feature{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:start}
+.experiment-feature video{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#000;border-radius:.5rem}
+.experiment-copy p{color:var(--muted)}
+.experiment-copy p+p{margin-top:1rem}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr;gap:3rem;align-items:start}
+.about .ph{aspect-ratio:4/5}
+.about p+p{margin-top:1rem}
+.skills{margin-top:1.75rem;display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;padding:0}
+.skills li{padding:.35rem .8rem;border:1px solid var(--line);border-radius:2rem;font-size:.95rem;background:var(--panel)}
+
+/* contact */
+.contact{background:var(--panel);border-top:1px solid var(--line)}
+.contact p{max-width:34rem;color:var(--muted);margin-bottom:1.5rem}
+.links{display:flex;gap:.75rem;flex-wrap:wrap}
+footer{padding:1.5rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+@media (max-width:50rem){
+  .hero .wrap,.project.feature,.pair,.about,.experiment-feature,.development-feature{grid-template-columns:1fr}
+  .stage{height:11rem;order:-1}
+  .project.feature .ph{aspect-ratio:4/5}
+  nav{gap:1rem}
+  .media-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:35rem){
+  header .wrap{height:auto;min-height:3.5rem;flex-direction:column;align-items:flex-start;justify-content:center;gap:.25rem;padding-top:.5rem;padding-bottom:.5rem}
+  nav{gap:.9rem;flex-wrap:wrap;font-size:.9rem}
+  .media-grid,.media-videos{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){.cube{animation:none;transform:rotateX(-22deg) rotateY(35deg)}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">Jens Maerevoet</a>
+    <nav aria-label="Hoofdmenu">
+      <a href="#top">Inleiding</a>
+      <a href="#projecten">Projecten</a>
+      <a href="#experiments">Experimenten</a>
+      <a href="#eerder-werk">Eerder werk</a>
+      <a href="#in-ontwikkeling">In ontwikkeling</a>
+      <a href="#over-mij">Over mij</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="grid-floor" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <h1>Jens Maerevoet</h1>
+        <p class="lead">Ik ben Jens, een laatstejaarsstudent Multimedia &amp; Creative Technologies (3D &amp; XR) aan de Karel de Grote Hogeschool. Ik werk graag met Unity en Blender en maak graag visueel aantrekkelijke dingen. Ik ben op zoek naar een stageplek.</p>
+        <div class="btns">
+          <a class="btn main" href="#projecten">Bekijk mijn werk</a>
+          <a class="btn" href="#contact">Contact opnemen</a>
+        </div>
+      </div>
+      <div class="stage" aria-hidden="true"><div class="cube"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    </div>
+  </div>
+
+  <section id="projecten">
+    <div class="wrap">
+      <h2>Projecten</h2>
+
+      <article class="project feature">
+        <div class="project-gallery">
+          <img src="media/kiosk-front-view.png" alt="Volledig vooraanzicht van de Multimedia Kiosk" loading="lazy" data-enlarge>
+          <div class="strip">
+            <img src="media/kiosk-angle-view.png" alt="Multimedia Kiosk vanuit een schuine hoek" loading="lazy" data-enlarge>
+            <img src="media/kiosk-screen-detail.png" alt="Close-up van het scherm van de Multimedia Kiosk" loading="lazy" data-enlarge>
+          </div>
+        </div>
+        <div>
+          <h3>Multimedia Kiosk</h3>
+          <p>Voor een fictief project moesten we een oplossing vinden voor ouderen die eenzaamheid ervaren en digitaal niet goed mee zijn. Ik besloot in Blender een kiosk te modelleren die hierbij helpt met vereenvoudigde toepassingen, zoals video, muziek, foto's, games en een hulpknop.</p>
+          <dl>
+            <dt>Rol</dt><dd>modelleren, materialen, UI-ontwerp, compositie en renderen</dd>
+            <dt>Tools</dt><dd>Blender, Figma, Unity</dd>
+            <dt>Resultaat</dt><dd>een gedetailleerd 3D-model van een concept, en veel bijgeleerd over modeling in Blender.</dd>
+          </dl>
+          <!-- TODO: voeg hier een videobron en een afspeelknop toe zodra de kioskvideo beschikbaar is. -->
+        </div>
+      </article>
+
+      <div class="pair">
+        <!-- PROJECT 2 -->
+        <article class="project">
+          <img class="project-thumb" src="media/brick-animation-poster.jpg" alt="Still uit de Lego-animatie, in een supermarkt" loading="lazy">
+          <h3>Venom, Lego-animatie</h3>
+          <p>Voor het vak Real-time 3D moesten we in Unity een Lego-animatie maken, gebaseerd op een scène of trailer van een film. Ik besloot een scène uit Venom na te maken. De assets zijn gedownload van Mecabricks.</p>
+          <dl>
+            <dt>Eigen werk</dt><dd>personages opgeschoond, textures, UV-wrapping en animaties</dd>
+            <dt>Assets</dt><dd>Mecabricks</dd>
+            <dt>Tools</dt><dd>Unity, Blender, Figma, DaVinci Resolve, Inkscape</dd>
+            <dt>Resultaat</dt><dd>Een Lego-animatie van een scène uit Venom, gemaakt in Unity.</dd>
+          </dl>
+          <h4 class="project-video-title">Bekijk de animatie</h4>
+          <video class="project-video" controls playsinline preload="metadata" poster="media/brick-animation-poster.jpg">
+            <source src="media/brick-animation-video.mp4" type="video/mp4">
+          </video>
+        </article>
+
+        <!-- PROJECT 3 -->
+        <article class="project">
+          <img class="project-thumb" src="media/xr-game-poster.png" alt="Don't Be Seen: donkere XR-gameomgeving met titelbeeld" loading="lazy">
+          <h3>Don't Be Seen, XR-game</h3>
+          <p>Voor het vak XR-development moesten we een XR-game maken rond het thema Hide and Seek. Ik besloot een verhaal uit te werken met verschillende entiteiten, elk met hun eigen sterktes en zwaktes. Daarnaast probeerde ik de grafische kwaliteit zo hoog mogelijk te krijgen door alles te optimaliseren en de belichting vooraf te berekenen (light baking), zodat de game soepel op de VR-bril werkt.</p>
+          <dl>
+            <dt>Eigen werk</dt><dd>UI, compositie, vijanden, speler, statistieken, menu en verschillende spelmodi</dd>
+            <dt>Assets</dt><dd>Sketchfab, Poliigon</dd>
+            <dt>Tools</dt><dd>Unity, C#, Meta Quest 2</dd>
+            <dt>Resultaat</dt><dd>Een speelbare XR-game rond Hide and Seek, met verschillende entiteiten en spelmodi, geoptimaliseerd voor Meta Quest 2.</dd>
+          </dl>
+          <h4 class="project-video-title">Bekijk de gameplay</h4>
+          <video class="project-video" controls playsinline preload="metadata" poster="media/xr-game-poster.png">
+            <source src="media/xr-gameplay-video.mp4" type="video/mp4">
+          </video>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="experiments">
+    <div class="wrap">
+      <h2>Experimenten</h2>
+      <article class="experiment-feature">
+        <video controls preload="metadata" poster="media/experiments/motion-graphics-poster.jpg">
+          <source src="media/experiments/motion-graphics-experiment.mp4" type="video/mp4">
+          Je browser kan deze video niet afspelen.
+        </video>
+        <div class="experiment-copy">
+          <p>Ik experimenteer graag visueel in Blender met graphics, compositie, enzovoort. Ik was aan het experimenteren met aesthetic low poly motion graphics. Ik had een referentie uit After Effects genomen en probeerde die zo exact mogelijk in Blender na te maken. Ik probeerde de compositie een aesthetic look te geven met grain, pixelation en chromatic aberration.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="eerder-werk">
+    <div class="wrap">
+      <h2>Eerder werk</h2>
+      <p class="past-work-intro">Buiten deze hoofdprojecten heb ik natuurlijk nog tal van andere projecten gedaan, elk met hun eigen deel waar ik nieuwe dingen van geleerd heb. Ze zijn niet allemaal perfect, maar ik heb er zeker veel van bijgeleerd.</p>
+      <div class="past-work-grid">
+        <figure class="media-card">
+          <img src="media/eerste%20jaar%20concepten/animation-project.jpg" alt="Tik Tak-project" loading="lazy" data-enlarge>
+          <figcaption>Tik Tak animatie</figcaption>
+        </figure>
+        <figure class="media-card">
+          <img src="media/eerste%20jaar%20concepten/engine-animation.jpg" alt="Motor, examenopdracht uit 2025" loading="lazy" data-enlarge>
+          <figcaption>Hoe werkt een motor animatie</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="in-ontwikkeling">
+    <div class="wrap">
+      <h2>In ontwikkeling</h2>
+      <article class="development-feature">
+        <figure class="media-card">
+          <img src="media/bachelorconcept/development-test-render.png" alt="Eerste test-render van het bachelorproject in Unity" loading="lazy">
+          <figcaption>Eerste test-render in Unity (work in progress)</figcaption>
+        </figure>
+        <div class="development-copy">
+          <p>Tegen het einde van het jaar moet ons bachelorproject af zijn. Het concept werk ik nog uit, maar ik wil opnieuw een Lego-animatie maken en die verder uitwerken. Ik heb al een snelle render in Unity gemaakt van hoe het eruit zou kunnen zien. Het is natuurlijk de bedoeling dat je er ook nieuwe dingen bij leert, en dat ben ik nog aan het uitzoeken.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="over-mij">
+    <div class="wrap about">
+      <div>
+        <h2>Over mij</h2>
+        <p>Mijn interesse is breed: zowat alles wat met VR en XR te maken heeft. Ik heb wel een kleine voorkeur voor de visuele kant, zoals belichting, compositie, camerahoeken, enzovoort.</p>
+        <p>Ik heb een goed gevoel voor videomontage en weet welke cuts op welk moment passen.</p>
+        <p>Ik zoek een stageplek waar ik veel kan bijleren en aan echte 3D-projecten kan werken, en waar ik in een leuk bedrijf terechtkom.</p>
+        <ul class="skills" aria-label="Vaardigheden">
+          <li>Unity</li>
+          <li>Blender</li>
+          <li>Figma</li>
+          <li>C# (basis)</li>
+          <li>DaVinci Resolve (basis)</li>
+          <li>Premiere Pro (basis)</li>
+          <li>After Effects (basis)</li>
+          <li>Photoshop (lichte kennis)</li>
+          <li>Illustrator (lichte kennis)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <div class="links">
+        <a class="btn main" href="mailto:jens.maerevoet@student.kdg.be">jens.maerevoet@student.kdg.be</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Jens Maerevoet, Multimedia &amp; Creative Technologies, Karel de Grote Hogeschool</div>
+</footer>
+
+<div class="image-viewer" id="image-viewer" role="dialog" aria-modal="true" aria-label="Vergrote afbeelding" hidden>
+  <button class="image-viewer-close" type="button" aria-label="Sluiten">Sluiten</button>
+  <img src="" alt="">
+</div>
+
+<script>
+const imageViewer = document.getElementById("image-viewer");
+const viewerImage = imageViewer.querySelector("img");
+const closeViewerButton = imageViewer.querySelector("button");
+let previouslyFocusedImage = null;
+
+function closeImageViewer() {
+  imageViewer.hidden = true;
+  viewerImage.removeAttribute("src");
+  if (previouslyFocusedImage) previouslyFocusedImage.focus();
+}
+
+document.querySelectorAll("img[data-enlarge]").forEach((image) => {
+  image.tabIndex = 0;
+  image.setAttribute("role", "button");
+  image.setAttribute("aria-label", `${image.alt} - vergroten`);
+
+  const enlarge = () => {
+    previouslyFocusedImage = image;
+    viewerImage.src = image.currentSrc || image.src;
+    viewerImage.alt = image.alt;
+    imageViewer.hidden = false;
+    closeViewerButton.focus();
+  };
+
+  image.addEventListener("click", enlarge);
+  image.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      enlarge();
+    }
+  });
+});
+
+closeViewerButton.addEventListener("click", closeImageViewer);
+imageViewer.addEventListener("click", (event) => {
+  if (event.target === imageViewer) closeImageViewer();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !imageViewer.hidden) closeImageViewer();
+});
+</script>
+</body>
+</html>
